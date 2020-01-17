@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    font-weight: 100;
+}
+a {
+    text-decoration: none;
+    color: #4098b2;
+}
+a:hover {
+    color: #000;
+}
+.main {
+    background: linear-gradient(230deg, #38a689, #2f8d97 30%, #207c92 65%, #116680);
+    height: 570px;
+    overflow: hidden;
+}
+h1 {
+    display: block;
+    width:550px;
+    height: 65px;
+    margin:30px auto 20px auto;
+    background: url(../img/title.png) no-repeat;
+    background-size: 550px 65px;
+    text-indent: -10000px;
+}
+.textarea-ctn {
+    padding:10px 0;
+    max-width: 1300px;
+    margin:0 auto;
+}
+h2 {
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: -8px;
+    padding:0;
+    margin: 0;
+    text-indent: -10000px;
+    opacity: .4;
+}
+h2.title-oc {
+    background-image: url(../img/oc.png);
+    width:140px;
+    background-size: 140px 30px;
+    left: 3.5%;
+}
+h2.title-js {
+    width:130px;
+    background-size: 130px 30px;
+    right: 3.5%;
+    background-image: url(../img/js.png);
+}
+.item {
+    width: 50%;
+    float: left;
+    height: 330px;
+    position: relative;
+}
+.item textarea {
+    position: absolute;
+    width:95%;
+    height:300px;
+    margin: 10px auto;
+    border:none;
+    overflow:scroll;
+    outline:none;
+    padding: 8px;
+    font-size:13px;
+    line-height: 1.5em;
+}
+#objcTextarea {
+    left:3.5%;
+}
+#jsTextarea {
+    left:1.5%;
+}
+#convertBtn {
+    text-decoration: none;
+    color: white;
+    border-color: white;
+    background: 0 0;
+    border: 1px solid;
+    border-radius: 17px;
+    font-size: 14px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 18px;
+    margin: 5px 0;
+    padding: 12px 50px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+#convertBtn:hover {
+    background-color:rgba(255, 255, 255, .15);
+}
+.action {
+    clear: both;
+    text-align: center;
+    padding-top:30px;
+}
+.error-tips {
+    color: #ac2b2b;
+    font-size: 13px;
+    background: #ffefef;
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    left: 1.5%;
+    width: 95%;
+    padding: 8px 0;
+    display: none;
+}
+

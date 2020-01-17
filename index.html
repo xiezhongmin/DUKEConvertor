@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>DUKEConvertor</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+	<div class="main" id="main">
+		<h1>DUKEConvertor</h1>
+		<div id="convertor">
+			<!-- 文本区域 -->
+			<div class="textarea-ctn">
+				<div class="item" id="objcItem">
+					<h2 class="title-oc">OC</h2>
+					<!-- wrap 设置为 off，将得到默认的动作。 -->
+					<textarea id="objcTestarea" wrap="off"></textarea>
+				</div>
+				<div class="item" id="jsItem">
+					<h2 class="title-js">JS</h2>
+					<textarea id="jsTestarea" wrap="off"></textarea>
+					<div class="error-tips" id="errorTips">Syntax Error</div>
+				</div>
+			</div>
+			<div class="action">
+	           	<a href="javascript:void(0)" id="convertBtn">Convert</a>
+			</div>
+		</div>
+	</div>
+
+   <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+        var minHeight = 570;
+        if (document.body.clientHeight > minHeight) {
+            $('main').style.height = document.body.clientHeight + 'px';
+            $('objcItem').style.height = document.body.clientHeight - 240 + 'px';
+            $('jsItem').style.height = document.body.clientHeight - 240 + 'px';
+            $('jsTestarea').style.height = document.body.clientHeight - 270 + 'px';
+            $('objcTestarea').style.height = document.body.clientHeight - 270 + 'px';
+        }
+    </script>
+    <script src="./js/lib/require.js"></script>
+    <script>
+    	window.onload = function() {
+        var sampleScript = [
+            '@implementation SampleClass',
+            '- (void)viewDidLoad {',
+            '    [super viewDidLoad];',
+            '    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 50)];',
+            '    [btn setTitle:@"Push DUKETableViewController" forState:UIControlStateNormal];',
+            '    [btn addTarget:self action:@selector(handleBtn:) forControlEvents:UIControlEventTouchUpInside];',
+            '    [btn setBackgroundColor:[UIColor grayColor]];',
+            '}',
+            '',
+            '- (void)handleBtn:(id)sender {',
+            '',
+            '}',
+            '@end',
+        ].join('\n');
+
+        $('objcTestarea').value = sampleScript;
+
+        var Preprocesser = require('./js/DUKEPreProcesser').DUKEPreProcesser;
+        var Convertor = require('./js/DUKEConvertor').DUKEConvertor;
+        var Generator = require('./js/DUKEGenerator').DUKEGenerator;
+          
+        $('convertBtn').onclick = function() {
+           var script = $('objcTestarea').value.replace('\n', '');
+           var p_source = Preprocesser.PreProcess(script)
+           var c_context = Convertor.Convert(p_source, function(tree) {
+    			var result = Generator.Generate(tree);
+    			$('jsTestarea').value = result;
+		   });
+        }
+        $('objcTextarea').focus();
+        $('convertor').style.display = "block";
+    }
+    </script>
+</body>
+</html>
